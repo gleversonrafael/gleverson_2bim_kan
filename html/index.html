@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kan - Gerenciamento de Usuários</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="shortcut icon" href="../resources/used-in-the-production/003-logo-created-in-chatgpt.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+<body>
+
+    <div class="info-header">
+        <div class="info-container">
+            <span>Sistema de Gerenciamento de Usuários</span>
+            <span class="badge-status">versão 1.0</span>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <img src="../resources/being-used/logo-bgremove.png" alt="Kan Logo" class="logo-img">
+
+            </div>
+            
+            <nav class="main-nav">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link active">Users</a>
+            </nav>
+            
+            <div class="profile-area">
+                <img src="../resources/being-used/this-user.png" alt="Foto do Usuário" class="profile-img">
+            </div>
+        </div>
+    </header>
+
+    <main class="content-container">
+        <section class="user-management-card">
+            
+            <div class="controls-row">
+                <div class="search-group">
+                    <label for="search-input" class="search-label">Search</label>
+                    <input type="text" id="search-input" class="search-box" placeholder="Type in a text to begin">
+
+                </div>
+                
+                <div class="actions-group">
+                    <!-- refresh table button -->
+                    <button id="updateTableButton" type="button" class="btn-action" title="Update table">
+                        <img src="../resources/being-used/refresh.png" alt="Refresh button" class="icon-img">
+                    </button>
+
+                    <button id="openSettingsButton" type="button" class="btn-action" title="Filter by">
+                        <img src="../resources/being-used/settings.png" alt="Settings Button" class="icon-img">
+
+                    </button>
+
+                    <!-- -->
+                </div>
+
+            </div>
+
+            <div class="table-responsive">
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>E-mail</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>teste</td>
+                            <td>teste.email</td>
+                            <td><span class="user-type">Comum</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>Aluno: Gleverson Rafael Rodrigues Nobre de Alencar</p>
+
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="../js/frontend.js"> </script>
+
+</body>
+</html>

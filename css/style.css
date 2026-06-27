@@ -1,0 +1,286 @@
+/* ==========================================================================
+   1. RESET & BASE VARIABLES (Demuxed Theme + Montserrat)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-darker: #130f1a;       /* Very dark deep purple/black background */
+    --bg-card: #211a2e;         /* Medium deep purple for panels and headers */
+    --bg-input: #2d243f;        /* Lighter tone for active items and boxes */
+    --accent-purple: #9a66cc;   /* Primary purple branding color */
+    --accent-coral: #f17a54;    /* Vibrant Coral/Orange contrast from reference image */
+    --accent-coral-dim: #c95f3b;/* Slightly darker coral variant for states */
+    --text-light: #f5f4f7;      /* Clean off-white for titles */
+    --text-muted: #a39eb0;      /* Secondary grayish-purple text */
+    --font-main: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: var(--bg-darker);
+    color: var(--text-light);
+    font-family: var(--font-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================================================
+   2. TOP INFO HEADER (NEW)
+   ========================================================================== */
+.info-header {
+    background-color: var(--bg-darker);
+    border-bottom: 1px solid var(--bg-input);
+    padding: 0.5rem 2rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+}
+
+.info-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.badge-status {
+    background-color: var(--bg-input);
+    color: var(--accent-coral); /* Orange contrast accent */
+    padding: 0.2rem 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   3. MAIN NAVIGATION HEADER
+   ========================================================================== */
+.main-header {
+    background-color: var(--bg-card);
+    padding: 1rem 2rem;
+    border-bottom: 2px solid var(--bg-input);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-img {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+.main-nav {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--text-light);
+}
+
+.nav-link.active {
+    color: var(--accent-purple);
+}
+
+.profile-img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-purple);
+}
+
+/* ==========================================================================
+   4. MAIN CONTENT LAYOUT & INNER PANEL
+   ========================================================================== */
+.content-container {
+    flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.user-management-card {
+    background-color: var(--bg-card);
+    width: 100%;
+    padding: 2.5rem;
+    border-radius: 0; 
+}
+
+/* Controls layout styling */
+.controls-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.search-group {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-grow: 1;
+    max-width: 500px;
+}
+
+.search-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-light);
+    letter-spacing: 0.02em;
+}
+
+.search-box {
+    width: 100%;
+    background-color: var(--bg-input);
+    border: 1px solid transparent;
+    border-radius: 0; 
+    padding: 0.75rem 1rem;
+    color: var(--text-light);
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.search-box:focus {
+    border-color: var(--accent-coral); /* Orange contrast highlight focus ring */
+}
+
+.actions-group {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btn-action {
+    background-color: var(--bg-input);
+    border: none;
+    border-radius: 0; 
+    cursor: pointer;
+    padding: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.btn-action:hover {
+    background-color: var(--accent-purple);
+}
+
+.icon-img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+/* ==========================================================================
+   5. SQUARED RESPONSIVE TABLE
+   ========================================================================== */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto; 
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.user-table th {
+    background-color: var(--bg-input);
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    padding: 1.2rem 1rem;
+    text-transform: uppercase;
+}
+
+.user-table td {
+    padding: 1.2rem 1rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    background-color: transparent;
+}
+
+.user-table tbody tr {
+    border-bottom: 1px solid var(--bg-input);
+    transition: background-color 0.15s ease;
+}
+
+.user-table tbody tr:hover {
+    background-color: rgba(45, 36, 63, 0.3); /* Subtle row hover glow */
+}
+
+.user-type {
+    color: var(--accent-coral); /* Orange applied directly to text field content */
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   6. FOOTER & RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+.main-footer {
+    background-color: var(--bg-darker);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    border-top: 1px solid var(--bg-card);
+}
+
+/* Media Query for mobile devices */
+@media (max-width: 600px) {
+    .info-container {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .header-container {
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .controls-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-group {
+        max-width: 100%;
+    }
+
+    .actions-group {
+        justify-content: flex-end;
+    }
+}
