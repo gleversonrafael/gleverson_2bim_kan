@@ -47,7 +47,8 @@ app.use((clientRequest, serverResponse, proceedWithinMiddlewares) =>
 /* ==========================================================================
    2. ROUTES
 ============================================================================= */
-app.get('/allUsers', async (clientRequest, serverResponse) => {
+// GET ALL USERS
+app.get('/users', async (clientRequest, serverResponse) => {
     const ALL_QUERY = `SELECT userid, username, email, rolename
     FROM KAN_USER KU INNER JOIN USER_ROLE UR 
     ON (KU.user_role_roleId = UR.roleId);`;
@@ -66,14 +67,71 @@ app.get('/allUsers', async (clientRequest, serverResponse) => {
     }
     catch(errorObject)
     {
-        console.log(errorObject.message);
-        console.log(errorObject.name);
-
         // ERROR
         serverResponse.status(500).json(
             {
                 data: null,
                 error: errorObject
+            }
+        )
+    }
+})
+
+// SEARCH BY NAME
+app.get('/users/name/:name', async(clientRequest, serverResponse) => {
+    // E
+    const {name} = clientRequest.params;
+
+    // P
+    const QUERY = 'SELECT userid, username, email, rolename FROM KAN_USER KU INNER JOIN USER_ROLE UR ON (KU.user_role_roleId = UR.roleId) WHERE username ILIKE $1'
+
+    try 
+    {
+        const QUERY_RESULTS = await currentPool.query(QUERY, [`%${name}%`]);
+
+        serverResponse.json(
+            {
+                data: QUERY_RESULTS.rows,
+                error: null
+            }
+        )
+
+    }
+    catch (error)
+    {
+        serverResponse.status(500).json(
+            {
+                data: null,
+                error: error
+            }
+        )
+    }
+})
+
+// SEARCH BY ROLE
+app.get('/users/role/:role', async (clientRequest, serverResponse) => {
+    const { role } = clientRequest.params;
+
+    const QUERY = 'SELECT userid, username, email, rolename FROM KAN_USER KU INNER JOIN USER_ROLE UR ON (KU.user_role_roleId = UR.roleId) WHERE rolename ILIKE $1';
+    
+    try 
+    {
+        const QUERY_RESULTS = await currentPool.query(QUERY, [`%${role}%`]);
+
+        serverResponse.json(
+            {
+                data: QUERY_RESULTS.rows,
+                error: null
+            }
+        )
+
+    }
+    catch(error)
+    {
+        serverResponse.status(500).json(
+            {
+                data: null, 
+                error: error
             }
         )
     }

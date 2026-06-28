@@ -245,8 +245,114 @@ body {
     font-weight: 500;
 }
 
+
 /* ==========================================================================
-   6. FOOTER & RESPONSIVE BREAKPOINTS
+   6. SETTINGS MODAL & OVERLAY SYSTEM
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(19, 15, 26, 0.85); /* Semi-transparent dark backdrop */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.25s ease;
+}
+
+/* Helper class to toggle modal visibility */
+.modal-overlay.hidden {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-card {
+    background-color: var(--bg-card);
+    width: 90%;
+    max-width: 550px;
+    padding: 3.5rem 2.5rem;
+    position: relative;
+    border-radius: 0; /* Squared elements layout */
+    border: 1px solid var(--bg-input);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Close button positioning inside the relative card */
+.btn-close-modal {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background-color: var(--accent-coral); /* Orange contrast background */
+    border: none;
+    border-radius: 50%; /* Rounded button design matching wireframe */
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s ease;
+}
+
+.btn-close-modal:hover {
+    background-color: var(--accent-coral-dim);
+}
+
+.close-icon-img {
+    width: 12px;
+    height: 12px;
+    object-fit: contain;
+}
+
+/* Row wrapper for label and dropdown combo */
+.modal-content-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.modal-label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text-light);
+    white-space: nowrap;
+}
+
+.modal-select {
+    flex-grow: 1;
+    max-width: 320px;
+    background-color: var(--text-light); /* Crisp white fill background matching wireframe */
+    color: #130f1a; /* Dark typography text color for clarity */
+    border: none;
+    border-radius: 0; /* Squared style rules */
+    padding: 0.75rem 1rem;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    font-weight: 500;
+    outline: none;
+    cursor: pointer;
+    appearance: none; /* Disables standard OS styling overrides */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23130f1a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2rem;
+    padding-right: 2.5rem;
+}
+
+.modal-select:focus {
+    box-shadow: 0 0 0 3px var(--accent-purple);
+}
+
+/* ==========================================================================
+   7. FOOTER & RESPONSIVE BREAKPOINTS
    ========================================================================== */
 .main-footer {
     background-color: var(--bg-darker);
@@ -284,3 +390,4 @@ body {
         justify-content: flex-end;
     }
 }
+

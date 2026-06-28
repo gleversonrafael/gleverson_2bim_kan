@@ -7,42 +7,108 @@ const PORT = '3000';
 /* ==========================================================================
    1. EVENTS
 ============================================================================= */
+// REFRESH BUTTON 
 document.getElementById("updateTableButton").addEventListener("click", async () => {
     await refreshTable();
 });
 
-document.getElementById("")
+// SEARCH BY
+document.getElementById("search-input").addEventListener("input", async () => {
+    const SEARCH_TYPE = document.getElementById("search-filter-select").value;
+    await searchBy(SEARCH_TYPE);
+})
+
+
+// MODAL
+document.getElementById("openSettingsButton").addEventListener("click", () => {
+    document.getElementById("settingsModalOverlay").classList.remove("hidden");
+});
+
+document.getElementById("closeSettingsButton").addEventListener("click", () => {
+    document.getElementById("settingsModalOverlay").classList.add("hidden");
+});
 
 /* ==========================================================================
    2. FUNCTIONS
 ============================================================================= */
 async function refreshTable()
 {
-    // E
-    const serverResponse = await fetch(
-        `http://${HOST}:${PORT}/allUsers`, 
-        {method: 'GET'}
-    )
-
-    const usersData = await serverResponse.json();
-
-    if(usersData.error != null)
+    try
     {
-        console.log(usersData.error.name),
-        console.log(usersData.error.message);
-        return;
+        // E
+        const serverResponse = await fetch(
+        `http://${HOST}:${PORT}/users`, 
+        {method: 'GET'});
+        
+        const usersData = await serverResponse.json();
+
+        if(usersData.error != null) 
+            throw new Error(usersData.error);
+
+        // S
+        updateTable(usersData.data);
+
+    }
+    catch (error)
+    {
+        console.log(error.name),
+        console.log(error.message);
+    }
+  
+}
+
+async function searchBy(searchType)
+{
+    // E
+    let typeOfSearch = '';
+    const SEARCHED = document.getElementById("search-input").value;
+
+    if(SEARCHED.length == 0) 
+    {
+        await refreshTable()
+        return;    
+    }
+
+    switch(searchType)
+    {
+        case 'username': 
+            typeOfSearch = 'name';
+            break;
+
+        case 'role':
+            typeOfSearch = 'role';
+            break;
+
+        default:
+            return;
     }
 
     // P
-    updateTable(usersData.data)
+    try
+    {
+        // EXAMPLE: http://localhost:3000/name:name
+        const response = await fetch(
+            `http://${HOST}:${PORT}/users/${typeOfSearch}/${SEARCHED}`, 
+            {
+                method: 'GET'
+            }
+        )
 
-    // 1. Pede pelos dados
-    // 2. Recebe os dados
-    // 3. Faz a tabela com os dados
-    // 4. Preenche
+        // S
+        const usersData = await response.json();
+
+        if(usersData.error != null)
+            throw new Error(usersData.error);
+        
+        updateTable(usersData.data);
+
+    }
+    catch(error) 
+    {
+        console.log(error.name),
+        console.log(error.message);
+    }
 }
-
-
 
 function updateTable(array) {
     // 1. Locate the target table structural body element

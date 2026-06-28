@@ -44,13 +44,12 @@
             
             <div class="controls-row">
                 <div class="search-group">
-                    <label for="search-input" class="search-label">Search</label>
-                    <input type="text" id="search-input" class="search-box" placeholder="Type in a text to begin">
+                    <input type="text" id="search-input" class="search-box" placeholder="Search">
 
                 </div>
                 
                 <div class="actions-group">
-                    <!-- refresh table button -->
+                    <!-- REFRESH TABLE BUTTON-->
                     <button id="updateTableButton" type="button" class="btn-action" title="Update table">
                         <img src="../resources/being-used/refresh.png" alt="Refresh button" class="icon-img">
                     </button>
@@ -60,7 +59,6 @@
 
                     </button>
 
-                    <!-- -->
                 </div>
 
             </div>
@@ -93,6 +91,24 @@
         <p>Aluno: Gleverson Rafael Rodrigues Nobre de Alencar</p>
 
     </footer>
+
+    <!-- MODALS -->
+    <div id="settingsModalOverlay" class="modal-overlay hidden">
+        <div class="modal-card">
+            <button id="closeSettingsButton" type="button" class="btn-close-modal" title="Close settings">
+                <img src="../resources/being-used/close-icon.png" alt="X" class="close-icon-img">
+            </button>
+            
+            <section class="modal-content-section">
+                <label for="search-filter-select" class="modal-label">Search by</label>
+                <select id="search-filter-select" class="modal-select">
+                    <option value="username">User name</option>
+                    <option value="role">Role</option>
+                    
+                </select>
+            </section>
+        </div>
+    </div>
 
     <!-- SCRIPTS -->
     <script src="../js/frontend.js"> </script>
