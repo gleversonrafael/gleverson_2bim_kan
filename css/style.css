@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. RESET & BASE VARIABLES (Demuxed Theme + Montserrat)
+   1. RESET & BASE VARIABLES
    ========================================================================== */
 * {
     margin: 0;
@@ -8,14 +8,16 @@
 }
 
 :root {
-    --bg-darker: #130f1a;       /* Very dark deep purple/black background */
-    --bg-card: #211a2e;         /* Medium deep purple for panels and headers */
-    --bg-input: #2d243f;        /* Lighter tone for active items and boxes */
-    --accent-purple: #9a66cc;   /* Primary purple branding color */
-    --accent-coral: #f17a54;    /* Vibrant Coral/Orange contrast from reference image */
-    --accent-coral-dim: #c95f3b;/* Slightly darker coral variant for states */
-    --text-light: #f5f4f7;      /* Clean off-white for titles */
-    --text-muted: #a39eb0;      /* Secondary grayish-purple text */
+    --bg-darker: #0b0813;        
+    --bg-card: #140f22;          
+    --bg-input: #1f1833;         
+    --bg-input-hover: #292044;   
+    --accent-purple: #8257e5;    
+    --accent-coral: #f17a54;     
+    --accent-coral-dim: #c95f3b; 
+    --text-light: #f5f4f7;       
+    --text-muted: #79728e;       
+    --border-color: #231b3a;     
     --font-main: 'Montserrat', sans-serif;
 }
 
@@ -26,23 +28,24 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 /* ==========================================================================
-   2. TOP INFO HEADER (NEW)
+   2. TOP INFO HEADER
    ========================================================================== */
 .info-header {
-    background-color: var(--bg-darker);
-    border-bottom: 1px solid var(--bg-input);
-    padding: 0.5rem 2rem;
+    background-color: #08060e;
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.6rem 2.5rem;
     font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.03em;
     color: var(--text-muted);
 }
 
 .info-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -50,11 +53,18 @@ body {
 }
 
 .badge-status {
-    background-color: var(--bg-input);
-    color: var(--accent-coral); /* Orange contrast accent */
-    padding: 0.2rem 0.6rem;
-    font-weight: 600;
-    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-muted);
+}
+
+.dot-status {
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent-coral);
+    border-radius: 50%;
+    display: inline-block;
 }
 
 /* ==========================================================================
@@ -62,27 +72,44 @@ body {
    ========================================================================== */
 .main-header {
     background-color: var(--bg-card);
-    padding: 1rem 2rem;
-    border-bottom: 2px solid var(--bg-input);
+    padding: 0.8rem 2.5rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .header-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
 .logo-img {
-    height: 40px;
-    width: auto;
-    display: block;
+    width: 125px;
+    height: 28px;
+    object-fit: cover;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-light);
+}
+
+.logo-text-accent {
+    color: var(--accent-purple);
 }
 
 .main-nav {
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .nav-link {
@@ -90,8 +117,18 @@ body {
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
-    letter-spacing: 0.03em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    position: relative;
     transition: color 0.2s ease;
+}
+
+.nav-icon-img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
 }
 
 .nav-link:hover {
@@ -99,78 +136,120 @@ body {
 }
 
 .nav-link.active {
-    color: var(--accent-purple);
+    color: var(--text-light);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--accent-purple);
+    border-radius: 3px 3px 0 0;
+}
+
+.profile-area {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
 }
 
 .profile-img {
-    width: 42px;
-    height: 42px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--accent-purple);
+    background-color: var(--bg-input);
+}
+
+.profile-dropdown-img {
+    width: 12px;
+    height: 12px;
+    object-fit: contain;
 }
 
 /* ==========================================================================
-   4. MAIN CONTENT LAYOUT & INNER PANEL
+   4. TWO-COLUMN DASHBOARD CONTENT CONTAINER GRID
    ========================================================================== */
 .content-container {
     flex: 1;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 2.5rem 1rem;
-    display: flex;
-    justify-content: center;
+    padding: 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 2rem;
     align-items: flex-start;
 }
 
-.user-management-card {
+.dashboard-main-panel {
     background-color: var(--bg-card);
-    width: 100%;
-    padding: 2.5rem;
-    border-radius: 0; 
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
 }
 
-/* Controls layout styling */
+.dashboard-sidebar-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.about-img {
+    display: flex;
+    width: 100%;
+}
+
+/* ==========================================================================
+   5. CONTROLS ROW & INPUT FILTERS
+   ========================================================================== */
 .controls-row {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 1.5rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .search-group {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    position: relative;
     flex-grow: 1;
-    max-width: 500px;
+    max-width: 360px;
 }
 
-.search-label {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-light);
-    letter-spacing: 0.02em;
+.search-icon-img {
+    position: absolute;
+    left: 1rem;
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    pointer-events: none;
 }
 
 .search-box {
     width: 100%;
     background-color: var(--bg-input);
-    border: 1px solid transparent;
-    border-radius: 0; 
-    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.7rem 1rem 0.7rem 2.8rem;
     color: var(--text-light);
     font-family: var(--font-main);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    font-weight: 500;
     outline: none;
-    transition: border-color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .search-box:focus {
-    border-color: var(--accent-coral); /* Orange contrast highlight focus ring */
+    border-color: var(--accent-purple);
+    background-color: var(--bg-input-hover);
+    box-shadow: 0 0 0 3px rgba(130, 87, 229, 0.15);
 }
 
 .actions-group {
@@ -180,28 +259,46 @@ body {
 
 .btn-action {
     background-color: var(--bg-input);
-    border: none;
-    border-radius: 0; 
+    border: 1px solid var(--border-color);
+    color: var(--text-light);
+    border-radius: 8px;
     cursor: pointer;
-    padding: 0.6rem;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
-.btn-action:hover {
-    background-color: var(--accent-purple);
-}
-
-.icon-img {
-    width: 22px;
-    height: 22px;
+.btn-icon-img {
+    width: 18px;
+    height: 18px;
     object-fit: contain;
 }
 
+.btn-action:hover {
+    background-color: var(--bg-input-hover);
+    border-color: var(--text-muted);
+}
+
+.btn-settings-indicator {
+    position: relative;
+}
+
+.btn-settings-indicator::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 5px;
+    height: 5px;
+    background-color: var(--accent-coral);
+    border-radius: 50%;
+}
+
 /* ==========================================================================
-   5. SQUARED RESPONSIVE TABLE
+   6. USER DATA TABLE (No Sort Arrows)
    ========================================================================== */
 .table-responsive {
     width: 100%;
@@ -215,39 +312,226 @@ body {
 }
 
 .user-table th {
-    background-color: var(--bg-input);
-    color: var(--text-light);
+    color: var(--text-muted);
     font-weight: 600;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    padding: 1.2rem 1rem;
-    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .user-table td {
-    padding: 1.2rem 1rem;
+    padding: 1rem 1.2rem;
     font-size: 0.95rem;
-    color: var(--text-muted);
-    background-color: transparent;
+    color: #c4c1d4;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
 }
 
 .user-table tbody tr {
-    border-bottom: 1px solid var(--bg-input);
     transition: background-color 0.15s ease;
 }
 
 .user-table tbody tr:hover {
-    background-color: rgba(45, 36, 63, 0.3); /* Subtle row hover glow */
+    background-color: rgba(31, 24, 51, 0.4);
 }
 
+.user-avatar-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.avatar-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: var(--bg-input);
+}
+
+.user-name-text {
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+/* Orange unified badges */
 .user-type {
-    color: var(--accent-coral); /* Orange applied directly to text field content */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--accent-coral);
+    background-color: rgba(241, 122, 84, 0.1);
+    border: 1px solid rgba(241, 122, 84, 0.2);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.role-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent-coral);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* ==========================================================================
+   7. PAGINATION (Simplified Arrows Only)
+   ========================================================================== */
+.table-pagination-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+}
+
+.pagination-text-summary {
+    font-size: 0.85rem;
+    color: var(--text-muted);
     font-weight: 500;
 }
 
+.pagination-nav-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-pagination-arrow {
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-light);
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.arrow-icon-img {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+}
+
+.btn-pagination-arrow:hover {
+    background-color: var(--bg-input-hover);
+    border-color: var(--text-muted);
+}
 
 /* ==========================================================================
-   6. SETTINGS MODAL & OVERLAY SYSTEM
+   8. SIDEBAR COMPARTMENT CARDS
+   ========================================================================== */
+.sidebar-card-widget {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.widget-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+}
+
+.widget-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.widget-header-row .widget-header {
+    margin-bottom: 0;
+}
+
+.widget-icon-img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.sidebar-card-widget h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+.widget-description {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+}
+
+.widget-header-select {
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-light);
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Fallback spaces ready for background-images */
+.vector-mock-placeholder {
+    width: 100%;
+    height: 120px;
+    background-color: #1c1630;
+    border: 1px dashed var(--border-color);
+    border-radius: 6px;
+}
+
+.chart-mock-placeholder {
+    width: 100%;
+    height: 100px;
+    background-color: #1c1630;
+    border-radius: 6px;
+    position: relative;
+}
+
+.widget-chart-display-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.chart-legend-row {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.legend-color {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.legend-color.purple { background-color: var(--accent-purple); }
+.legend-color.coral { background-color: var(--accent-coral); }
+
+/* ==========================================================================
+   9. SETTINGS POPUP MODAL OVERLAY (Atualizado conforme referência)
    ========================================================================== */
 .modal-overlay {
     position: fixed;
@@ -255,7 +539,7 @@ body {
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: rgba(19, 15, 26, 0.85); /* Semi-transparent dark backdrop */
+    background-color: rgba(7, 5, 13, 0.85);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -264,7 +548,6 @@ body {
     transition: opacity 0.25s ease;
 }
 
-/* Helper class to toggle modal visibility */
 .modal-overlay.hidden {
     display: none;
     opacity: 0;
@@ -274,120 +557,175 @@ body {
 .modal-card {
     background-color: var(--bg-card);
     width: 90%;
-    max-width: 550px;
-    padding: 3.5rem 2.5rem;
+    max-width: 460px;
+    padding: 2.5rem;
     position: relative;
-    border-radius: 0; /* Squared elements layout */
-    border: 1px solid var(--bg-input);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.8);
 }
 
-/* Close button positioning inside the relative card */
+/* Botão X limpo e minimalista no topo direito */
 .btn-close-modal {
     position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
-    background-color: var(--accent-coral); /* Orange contrast background */
+    top: 1.5rem;
+    right: 1.5rem;
+    background: transparent;
     border: none;
-    border-radius: 50%; /* Rounded button design matching wireframe */
-    width: 28px;
-    height: 28px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.15s ease;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
 }
 
 .btn-close-modal:hover {
-    background-color: var(--accent-coral-dim);
+    opacity: 1;
 }
 
 .close-icon-img {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     object-fit: contain;
 }
 
-/* Row wrapper for label and dropdown combo */
-.modal-content-section {
+/* Bloco do Cabeçalho (Badge Roxo + Títulos) */
+.modal-header-block {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    margin-top: 0.5rem;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
-.modal-label {
-    font-size: 1.4rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
+.modal-icon-badge {
+    background-color: var(--accent-purple);
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.modal-badge-img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.modal-header-text h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
     color: var(--text-light);
-    white-space: nowrap;
+    margin-bottom: 0.25rem;
+}
+
+.modal-header-text p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Layout do Input Box Otimizado (Vertical) */
+.modal-content-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.modal-input-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #a39eb9;
+}
+
+/* Caixa de seleção customizada e escura com ícones */
+.modal-select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.modal-select-left-icon {
+    position: absolute;
+    left: 1rem;
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    pointer-events: none;
+    opacity: 0.5;
 }
 
 .modal-select {
-    flex-grow: 1;
-    max-width: 320px;
-    background-color: var(--text-light); /* Crisp white fill background matching wireframe */
-    color: #130f1a; /* Dark typography text color for clarity */
-    border: none;
-    border-radius: 0; /* Squared style rules */
-    padding: 0.75rem 1rem;
+    width: 100%;
+    background-color: var(--bg-input);
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.8rem 2.5rem 0.8rem 2.8rem;
     font-family: var(--font-main);
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 500;
     outline: none;
     cursor: pointer;
-    appearance: none; /* Disables standard OS styling overrides */
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23130f1a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    
+    /* Remove a seta padrão do sistema operacional */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    /* Insere a seta customizada como imagem de fundo no input */
+    background-image: url('../resources/being-used/dropdown-arrow.png');
     background-repeat: no-repeat;
     background-position: right 1rem center;
-    background-size: 1.2rem;
-    padding-right: 2.5rem;
+    background-size: 10px;
+    transition: all 0.2s ease;
 }
 
 .modal-select:focus {
-    box-shadow: 0 0 0 3px var(--accent-purple);
+    border-color: var(--accent-purple);
+    background-color: var(--bg-input-hover);
+    box-shadow: 0 0 0 3px rgba(130, 87, 229, 0.15);
 }
 
 /* ==========================================================================
-   7. FOOTER & RESPONSIVE BREAKPOINTS
+   10. FOOTER & MEDIA LAYOUT BREAKPOINTS
    ========================================================================== */
 .main-footer {
-    background-color: var(--bg-darker);
+    background-color: #08060e;
     text-align: center;
     padding: 1.5rem;
     font-size: 0.85rem;
     font-weight: 500;
     color: var(--text-muted);
-    border-top: 1px solid var(--bg-card);
+    border-top: 1px solid var(--border-color);
+    margin-top: auto;
 }
 
-/* Media Query for mobile devices */
-@media (max-width: 600px) {
-    .info-container {
-        flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
-    }
+.heart-icon {
+    color: var(--accent-purple);
+    margin-left: 0.2rem;
+}
 
+@media (max-width: 1024px) {
+    .content-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
     .header-container {
         flex-direction: column;
-        gap: 1.25rem;
+        gap: 1rem;
     }
-
     .controls-row {
         flex-direction: column;
         align-items: stretch;
     }
-
     .search-group {
         max-width: 100%;
     }
-
-    .actions-group {
-        justify-content: flex-end;
-    }
 }
-

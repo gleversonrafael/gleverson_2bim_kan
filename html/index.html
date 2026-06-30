@@ -3,71 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kan - Gerenciamento de Usuários</title>
+    <title>RyuKan - User management</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link rel="shortcut icon" href="../resources/used-in-the-production/003-logo-created-in-chatgpt.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-
 </head>
+
 <body>
-
-    <div class="info-header">
+    <!-- CABEÇALHO DO PROJETO-->
+    <header class="info-header">
         <div class="info-container">
-            <span>Sistema de Gerenciamento de Usuários</span>
-            <span class="badge-status">versão 1.0</span>
+            <span>Página de gerenciamento de usuários </span>
+            <span class="badge-status"><span class="dot-status"></span>versão 2.0</span>
         </div>
-    </div>
 
+    </header>
+
+    <!-- MENU -->
     <header class="main-header">
         <div class="header-container">
             <div class="logo-area">
-                <img src="../resources/being-used/logo-bgremove.png" alt="Kan Logo" class="logo-img">
+                <img class="logo-img" src="../resources/being-used/logo.png" alt="RyuKan Logo Icon">
 
             </div>
             
             <nav class="main-nav">
-                <a href="#" class="nav-link">Home</a>
-                <a href="#" class="nav-link active">Users</a>
+                <a href="#" class="nav-link">
+                    <img class="nav-icon-img" src="../resources/being-used/ico-house.png" alt="Illustration of a house">
+                    Home
+                </a>
+
+                <a href="#" class="nav-link active">
+                    <img class="nav-icon-img" src="../resources/being-used/ico-user.png" alt="Illustration of three users">
+                    Users
+                </a>
             </nav>
             
             <div class="profile-area">
-                <img src="../resources/being-used/this-user.png" alt="Foto do Usuário" class="profile-img">
+                <img src="../resources/being-used/this-user.png" alt="User image" class="profile-img">
             </div>
         </div>
     </header>
 
+    <!-- SEÇÃO PRINCIPAL -->
     <main class="content-container">
-        <section class="user-management-card">
-            
+        <section class="dashboard-main-panel">
             <div class="controls-row">
                 <div class="search-group">
-                    <input type="text" id="search-input" class="search-box" placeholder="Search">
-
+                    <img class="search-icon-img" src="../resources/being-used/ico-search.png" alt="Illustration of a magnifying glass">
+                    <input type="text" id="search-input" class="search-box" placeholder="Search users...">
                 </div>
                 
                 <div class="actions-group">
-                    <!-- REFRESH TABLE BUTTON-->
                     <button id="updateTableButton" type="button" class="btn-action" title="Update table">
-                        <img src="../resources/being-used/refresh.png" alt="Refresh button" class="icon-img">
+                        <img class="btn-icon-img" src="../resources/being-used/refresh.png" alt="Refresh">
                     </button>
 
-                    <button id="openSettingsButton" type="button" class="btn-action" title="Filter by">
-                        <img src="../resources/being-used/settings.png" alt="Settings Button" class="icon-img">
-
+                    <button id="openSettingsButton" type="button" class="btn-action btn-settings-indicator" title="Filter configuration">
+                        <img class="btn-icon-img" src="../resources/being-used/settings.png" alt="Settings">
                     </button>
 
                 </div>
-
             </div>
 
             <div class="table-responsive">
                 <table class="user-table">
                     <thead>
                         <tr>
-                            <th>Id</th>
                             <th>Name</th>
                             <th>E-mail</th>
                             <th>Role</th>
@@ -75,43 +80,93 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1</td>
-                            <td>teste</td>
+                            <td>
+                                <div class="user-avatar-cell">
+                                    <img src="../resources/being-used/this-user.png" alt="Avatar" class="avatar-img">
+                                    <span class="user-name-text">teste</span>
+                                </div>
+                            </td>
                             <td>teste.email</td>
-                            <td><span class="user-type">Comum</span></td>
+                            <td>
+                                <span class="user-type"><span class="role-dot"></span>Comum</span>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
+
             </div>
 
+            <div class="table-pagination-summary">
+                <span id="pagination-counter-text" class="pagination-text-summary">Showing 1 result</span>
+                <div class="pagination-nav-controls">
+                    <button id="prevPageButton" class="btn-pagination-arrow" title="Previous Page">
+                        &lt;
+                    </button>
+
+                    <button id="nextPageButton" class="btn-pagination-arrow" title="Next Page">
+                        &gt;
+                    </button>
+
+                </div>
+            </div>
         </section>
+
+        <aside class="dashboard-sidebar-panel">
+            <article class="sidebar-card-widget">
+                <div class="widget-header">
+                    || <h3>About this page</h3>
+                </div>
+                <p class="widget-description">
+                    Here you can view and manage all registered users in the system. Use the search and filter tools to quickly find what you need.
+
+                </p>
+
+                <img class="about-img" src="../resources/being-used/about.png" alt="">
+
+            </article>
+
+        </aside>
     </main>
 
+    <!-- RODAPÉ-->
     <footer class="main-footer">
-        <p>Aluno: Gleverson Rafael Rodrigues Nobre de Alencar</p>
-
+        <p>Aluno: Gleverson Rafael Rodrigues Nobre de Alencar </p>
     </footer>
 
     <!-- MODALS -->
     <div id="settingsModalOverlay" class="modal-overlay hidden">
         <div class="modal-card">
             <button id="closeSettingsButton" type="button" class="btn-close-modal" title="Close settings">
-                <img src="../resources/being-used/close-icon.png" alt="X" class="close-icon-img">
+                <img class="close-icon-img" src="../resources/being-used/ico-x.png" alt="X">
             </button>
             
+            <div class="modal-header-block">
+                <div class="modal-icon-badge">
+                    <img class="modal-badge-img" src="../resources/being-used/settings.png" alt="Icon of a gear">
+                </div>
+                
+                <div class="modal-header-text">
+                    <h2>Search & filter</h2>
+                    <p>Choose how you want to search for users.</p>
+                </div>
+            </div>
+            
             <section class="modal-content-section">
-                <label for="search-filter-select" class="modal-label">Search by</label>
-                <select id="search-filter-select" class="modal-select">
-                    <option value="username">User name</option>
-                    <option value="role">Role</option>
-                    
-                </select>
+                <label for="search-filter-select" class="modal-input-label">Search by</label>
+                <div class="modal-select-wrapper">
+                    <select id="search-filter-select" class="modal-select">
+                        <option value="username">User name</option>
+                        <option value="role">Role</option>
+                    </select>
+
+                </div>
+
             </section>
         </div>
     </div>
 
-    <!-- SCRIPTS -->
-    <script src="../js/frontend.js"> </script>
+    <!-- SCRIPTS-->
+    <script src="../js/frontend.js"></script>
 
 </body>
 </html>
